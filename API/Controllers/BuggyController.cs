@@ -16,10 +16,12 @@ namespace API.Controllers
         public ActionResult GetNotFoundRequest()
         {
             var thing = _context.Products.Find(42);
+
             if (thing == null)
             {
                 return NotFound(new ApiResponse(404));
             }
+
             return Ok();
         }
 
@@ -27,7 +29,9 @@ namespace API.Controllers
         public ActionResult GetServerError()
         {
             var thing = _context.Products.Find(42);
+
             var thingToReturn = thing.ToString();
+
             return Ok();
         }
 
@@ -42,6 +46,5 @@ namespace API.Controllers
         {
             return Ok();
         }
-
     }
 }
