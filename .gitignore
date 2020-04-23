@@ -2,4 +2,4 @@ obj
 bin
 *.db
 appsettings.json
-*.rdbKE
+*.rdb
