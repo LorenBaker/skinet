@@ -26,9 +26,13 @@ export class BasketService {
   constructor(private http: HttpClient) {}
 
   getBasket(id: string) {
+    // TODO: remvoe console.log
+    console.log('getBasket: id=' + id);
+
     return this.http.get(this.baseUrl + 'basket?id=' + id).pipe(
       map((basket: IBasket) => {
         this.basketSource.next(basket);
+        // TODO: remvoe console.log
         console.log(this.getCurrentBasketValue());
         this.calculateTotals();
       })
@@ -57,10 +61,16 @@ export class BasketService {
       item,
       quantity
     );
+    // TODO: remvoe console.log
+    console.log(itemToAdd);
+
     let basket = this.getCurrentBasketValue();
     if (basket === null) {
       basket = this.createBasket();
     }
+
+    // TODO: remvoe console.log
+    console.log(basket);
 
     basket.items = this.addOrUpdateItem(basket.items, itemToAdd, quantity);
     this.setBasket(basket);
