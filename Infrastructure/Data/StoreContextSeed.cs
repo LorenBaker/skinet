@@ -2,10 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Reflection;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Core.Entities;
+using Core.Entities.OrderAggregate;
 using Microsoft.Extensions.Logging;
 
 namespace Infrastructure.Data
@@ -63,20 +63,20 @@ namespace Infrastructure.Data
                     await context.SaveChangesAsync();
                 }
 
-                // if (!context.DeliveryMethods.Any())
-                // {
-                //     var dmData =
-                //         File.ReadAllText(path + @"/Data/SeedData/delivery.json");
+                if (!context.DeliveryMethods.Any())
+                {
+                    var dmData =
+                        File.ReadAllText("../Infrastructure/Data/SeedData/delivery.json");
 
-                //     var methods = JsonSerializer.Deserialize<List<DeliveryMethod>>(dmData);
+                    var methods = JsonSerializer.Deserialize<List<DeliveryMethod>>(dmData);
 
-                //     foreach (var item in methods)
-                //     {
-                //         context.DeliveryMethods.Add(item);
-                //     }
+                    foreach (var item in methods)
+                    {
+                        context.DeliveryMethods.Add(item);
+                    }
 
-                //     await context.SaveChangesAsync();
-                // }
+                    await context.SaveChangesAsync();
+                }
                 
             }
             catch (Exception ex)
